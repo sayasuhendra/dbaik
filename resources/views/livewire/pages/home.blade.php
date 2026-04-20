@@ -143,7 +143,10 @@ new class extends Component {
                 <a href="{{ route('product.gallery', $category->slug) }}" class="product-card reveal" wire:navigate>
                     <div class="product-icon">
                         @if($category->thumbnail)
-                            <img src="{{ url('storage/' . $category->thumbnail) }}" alt="{{ $category->name }}"
+                            @php
+                                $thumbUrl = str_starts_with($category->thumbnail, 'img/') ? asset($category->thumbnail) : asset('storage/' . $category->thumbnail);
+                            @endphp
+                            <img src="{{ $thumbUrl }}" alt="{{ $category->name }}"
                                 style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;">
                         @else
                             <span>✦</span>

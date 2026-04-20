@@ -105,7 +105,11 @@ mount(function ($slug) {
                 @foreach($otherCategories as $other)
                 <div class="category-card reveal" onclick="window.location='{{ route('product.gallery', $other->slug) }}'">
                     <div class="category-image">
-                        <img src="{{ asset($other->thumbnail ?? 'img/placeholder.png') }}" alt="{{ $other->name }}" loading="lazy">
+                        @php
+                            $catThumb = $other->thumbnail ?? 'img/placeholder.png';
+                            $catThumbUrl = str_starts_with($catThumb, 'img/') ? asset($catThumb) : asset('storage/' . $catThumb);
+                        @endphp
+                        <img src="{{ $catThumbUrl }}" alt="{{ $other->name }}" loading="lazy">
                         <div class="category-overlay">
                             <span class="category-badge">{{ $other->images->count() }} Foto</span>
                         </div>
