@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Katalog Produk — Faris Jaya Aluminium</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  
+  <!-- GLightbox CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+  
+  <style>
+    :root {
+      --font-display: 'Inter', sans-serif;
+      --bg-dark: #0a0a0a;
+      --gold-300: #b8901f;
+      --white: #ffffff;
+      --radius-md: 20px;
+      --transition-fast: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: var(--bg-dark);
+      color: var(--white);
+      font-family: var(--font-display);
+      overflow-x: hidden;
+    }
+    
+    .container { max-width: 1200px; margin: 0 auto; padding: 40px 24px; }
+    
+    /* Navbar */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 20px 0; background: rgba(10,10,10,0.8); backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; }
+    .nav-logo { font-weight: 800; font-size: 20px; letter-spacing: -0.5px; text-decoration: none; color: var(--white); }
+    .back-btn { text-decoration: none; color: rgba(255,255,255,0.6); font-size: 14px; display: flex; align-items: center; gap: 8px; transition: color 0.3s; }
+    .back-btn:hover { color: var(--gold-300); }
+
+    /* Header */
+    .header { margin-top: 80px; text-align: center; margin-bottom: 60px; }
+    .header-cat { font-size: 13px; font-weight: 700; color: var(--gold-300); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; }
+    .header-title { font-size: 48px; font-weight: 900; letter-spacing: -1.5px; }
+    .header-sub { color: rgba(255,255,255,0.4); max-width: 600px; margin: 20px auto 0; line-height: 1.6; }
+
+    /* Photo Grid */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .photo-item {
+      position: relative; border-radius: var(--radius-md); overflow: hidden;
+      background: rgba(255,255,255,0.03); aspect-ratio: 4/3;
+      cursor: pointer; display: block;
+    }
+    .photo-item img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .photo-item:hover img { transform: scale(1.05); }
+    .photo-overlay {
+      position: absolute; inset: 0; background: rgba(0,0,0,0.3);
+      opacity: 0; transition: opacity 0.3s; display: flex; align-items: center; justify-content: center;
+    }
+    .photo-item:hover .photo-overlay { opacity: 1; }
+    .zoom-icon { padding: 12px; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-radius: 50%; }
+
+    /* Empty State */
+    .empty-state { text-align: center; padding: 100px 0; color: rgba(255,255,255,0.2); }
+    .empty-state span { font-size: 80px; display: block; margin-bottom: 20px; }
+
+    @media (max-width: 768px) {
+      .photo-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    }
+    
+    /* Other Categories Section */
+    .other-categories {
+      margin-top: 100px;
+      padding-top: 60px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .oc-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .oc-title {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 12px;
+    }
+    .oc-sub {
+      color: rgba(255,255,255,0.4);
+      font-size: 14px;
+    }
+
+    .gallery-category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .gallery-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+    }
+
+    .gallery-card:hover {
+      border-color: rgba(184, 144, 31, 0.3);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    }
+
+    .gallery-card-visual {
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 56px;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .gallery-card-visual::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 30%, rgba(0, 0, 0, 0.7) 100%);
+    }
+
+    .gallery-card-body {
+      padding: 20px 22px 22px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .gallery-card-title {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--white);
+      line-height: 1.3;
+    }
+
+    .gallery-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .gallery-card-loc {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.35);
+    }
+
+    .gallery-card-tag {
+      display: inline-flex;
+      padding: 3px 10px;
+      background: rgba(184, 144, 31, 0.1);
+      border: 1px solid rgba(184, 144, 31, 0.18);
+      border-radius: 100px;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--gold-300);
+    }
+
+    @media (max-width: 768px) {
+      .gallery-category-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    @media (max-width: 480px) {
+      .photo-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">FARIS JAYA</a>
+      <a href="index.html#gallery" class="back-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+        Kembali ke Galeri
+      </a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="header">
+      <div class="header-cat" id="cat-label">Kategori</div>
+      <h1 class="header-title" id="cat-title">Galeri Produk</h1>
+      <p class="header-sub">Berikut adalah koleksi pengerjaan kami untuk kategori ini. Kami mengutamakan kualitas material dan ketelitian pengerjaan.</p>
+    </div>
+
+    <div class="photo-grid" id="photo-grid">
+      <!-- Dynamic images here -->
+    </div>
+    
+    <div id="empty-state" class="empty-state" style="display:none;">
+      <span>📂</span>
+      Belum ada foto dalam kategori ini.<br />Silakan tambahkan foto di folder img/products/
+    </div>
+
+    <div class="other-categories">
+      <div class="oc-header">
+        <h2 class="oc-title">Katalog Produk Lainnya</h2>
+        <p class="oc-sub">Lihat kategori produk aluminium premium kami yang lain tanpa harus kembali ke halaman utama.</p>
+      </div>
+      <div class="gallery-category-grid" id="category-grid">
+        <!-- populated by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/gallery-data.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  
+  <script>
+    function loadCategory() {
+      const params = new URLSearchParams(window.location.search);
+      const slug = params.get('cat');
+      
+      if (!slug || typeof PRODUCT_GALLERY_DATA === 'undefined') {
+        window.location.href = 'index.html';
+        return;
+      }
+
+      const data = PRODUCT_GALLERY_DATA[slug];
+      if (!data) {
+        window.location.href = 'index.html';
+        return;
+      }
+
+      document.title = `${data.name} — Faris Jaya Aluminium`;
+      document.getElementById('cat-label').textContent = 'Kategori Produk';
+      document.getElementById('cat-title').textContent = data.name;
+
+      const grid = document.getElementById('photo-grid');
+      const empty = document.getElementById('empty-state');
+
+      if (data.images.length === 0) {
+        grid.style.display = 'none';
+        empty.style.display = 'block';
+        return;
+      }
+
+      grid.innerHTML = data.images.map((src, i) => `
+        <a href="${src}" class="glightbox photo-item" data-gallery="product-cat">
+          <img src="${src}" alt="${data.name} ${i+1}" />
+          <div class="photo-overlay">
+            <div class="zoom-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </div>
+          </div>
+        </a>
+      `).join('');
+
+      // Init GLightbox
+      const lightbox = GLightbox({
+        selector: '.glightbox',
+        touchNavigation: true,
+        loop: true
+      });
+
+      // Animations
+      gsap.from(".photo-item", {
+        y: 40, opacity: 0, duration: 0.8, stagger: 0.1, ease: "power3.out"
+      });
+      gsap.from(".header > *", {
+        y: 20, opacity: 0, stagger: 0.2, duration: 1, ease: "power2.out"
+      });
+
+      // Render other categories
+      renderOtherCategories(slug);
+    }
+
+    function renderOtherCategories(currentSlug) {
+      const grid = document.getElementById('category-grid');
+      if (!grid || typeof PRODUCT_GALLERY_DATA === 'undefined') return;
+
+      const categories = Object.values(PRODUCT_GALLERY_DATA).filter(cat => cat.slug !== currentSlug);
+
+      grid.innerHTML = categories.map((cat, i) => {
+        const hasImg = cat.thumbnail;
+        const bgStyle = hasImg
+          ? `background-image:url('${cat.thumbnail}')`
+          : `background:linear-gradient(135deg, #1c1c1e 0%, #2c2c2e 100%)`;
+
+        return `
+          <a href="product-gallery.html?cat=${cat.slug}" class="gallery-card" style="opacity:0; transform:translateY(30px);">
+            <div class="gallery-card-visual" style="${bgStyle}">
+              ${!hasImg ? `<div style="font-size:40px;opacity:0.2;">📦</div>` : ''}
+              <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(10,10,10,0.8) 0%, transparent 60%);"></div>
+            </div>
+            <div class="gallery-card-body">
+              <div class="gallery-card-title">${cat.name}</div>
+              <div class="gallery-card-footer">
+                <span class="gallery-card-loc">${cat.images.length} Foto Produk</span>
+                <span class="gallery-card-tag">Lihat →</span>
+              </div>
+            </div>
+          </a>
+        `;
+      }).join('');
+
+      // Reveal with ScrollTrigger
+      gsap.to(".gallery-card", {
+        opacity: 1,
+        y: 0,
+        stagger: 0.08,
+        duration: 0.8,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".other-categories",
+          start: "top 80%",
+          once: true
+        }
+      });
+    }
+
+    window.addEventListener('DOMContentLoaded', loadCategory);
+  </script>
+</body>
+</html>
