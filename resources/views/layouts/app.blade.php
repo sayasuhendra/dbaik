@@ -10,6 +10,9 @@
 
     <title>@yield('title', 'Faris Jaya Aluminium — Premium Aluminium Specialist')</title>
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
