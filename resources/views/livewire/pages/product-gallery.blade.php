@@ -75,8 +75,11 @@ mount(function ($slug) {
         @if($images->count() > 0)
         <div class="photo-grid" id="photo-grid">
             @foreach($images as $image)
-            <a href="{{ asset($image->path) }}" class="glightbox photo-item" data-gallery="product-cat">
-                <img src="{{ asset($image->path) }}" alt="{{ $category->name }} {{ $loop->iteration }}" loading="lazy" />
+            @php
+                $imgUrl = str_starts_with($image->path, 'img/') ? asset($image->path) : asset('storage/' . $image->path);
+            @endphp
+            <a href="{{ $imgUrl }}" class="glightbox photo-item" data-gallery="product-cat">
+                <img src="{{ $imgUrl }}" alt="{{ $category->name }} {{ $loop->iteration }}" loading="lazy" />
                 <div class="photo-overlay">
                     <div class="zoom-icon">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>

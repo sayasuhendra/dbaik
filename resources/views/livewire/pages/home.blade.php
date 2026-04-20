@@ -111,8 +111,11 @@ new class extends Component {
                 <a href="{{ route('portfolio.detail', $project->id) }}" class="project-card reveal" wire:navigate
                     style="display: block; text-decoration: none;">
                     <div class="project-img-wrapper">
-                        <img src="{{ (is_array($project->photos) && isset($project->photos[0])) ? url('storage/' . $project->photos[0]) : 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80' }}"
-                            alt="{{ $project->title }}">
+                        @php
+                            $pPhoto = (is_array($project->photos) && isset($project->photos[0])) ? $project->photos[0] : null;
+                            $pPhotoUrl = $pPhoto ? (str_starts_with($pPhoto, 'img/') ? asset($pPhoto) : asset('storage/' . $pPhoto)) : 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80';
+                        @endphp
+                        <img src="{{ $pPhotoUrl }}" alt="{{ $project->title }}">
                     </div>
                     <div class="project-info">
                         <p class="project-category">{{ $project->category }}</p>

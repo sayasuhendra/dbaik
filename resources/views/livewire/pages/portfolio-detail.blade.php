@@ -166,8 +166,11 @@ new class extends Component {
                         {{ $ft->portfolio_detail['gallery_label'] ?? 'Galeri Foto' }}</h3>
                     <div class="photo-grid">
                         @foreach($project->photos as $photo)
-                            <a href="{{ asset($photo) }}" class="glightbox photo-item">
-                                <img src="{{ asset($photo) }}" alt="{{ $project->title }}" loading="lazy">
+                            @php
+                                $photoUrl = str_starts_with($photo, 'img/') ? asset($photo) : asset('storage/' . $photo);
+                            @endphp
+                            <a href="{{ $photoUrl }}" class="glightbox photo-item">
+                                <img src="{{ $photoUrl }}" alt="{{ $project->title }}" loading="lazy">
                             </a>
                         @endforeach
                     </div>
@@ -205,7 +208,11 @@ new class extends Component {
                             style="display: flex; gap: 12px; align-items: center; text-decoration: none; margin-bottom: 16px;">
                             <div
                                 style="width: 50px; height: 50px; border-radius: 8px; overflow: hidden; flex-shrink: 0; background: #2c2c2e;">
-                                <img src="{{ asset($rel->photos[0] ?? "") }}"
+                                @php
+                                    $firstPhoto = $rel->photos[0] ?? "";
+                                    $relPhotoUrl = str_starts_with($firstPhoto, 'img/') ? asset($firstPhoto) : asset('storage/' . $firstPhoto);
+                                @endphp
+                                <img src="{{ $relPhotoUrl }}"
                                     style="width: 100%; height: 100%; object-fit: cover;">
                             </div>
                             <div>
