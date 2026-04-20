@@ -1,8 +1,11 @@
 <footer id="footer">
     <div class="footer-inner">
+        @php
+            $ft = \App\Models\FrontendText::first();
+        @endphp
         <div class="footer-brand" style="max-width: 400px;">
-            <h3>FARIS JAYA ALUMINIUM</h3>
-            <p>Premium Aluminium Specialist — Sejak 2018</p>
+            <h3>{{ $ft->footer['brand_name'] ?? 'FARIS JAYA ALUMINIUM' }}</h3>
+            <p>{{ $ft->footer['brand_desc'] ?? 'Premium Aluminium Specialist — Sejak 2018' }}</p>
         </div>
         <ul class="footer-links">
             <li><a href="{{ route('home') }}">Beranda</a></li>

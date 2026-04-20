@@ -11,6 +11,7 @@ new class extends Component {
     public $categories;
     public $settings;
     public $testimonials;
+    public $frontendText;
 
     public function mount()
     {
@@ -24,6 +25,7 @@ new class extends Component {
             'location_text' => 'Jakarta & Sekitarnya'
         ]);
         $this->testimonials = Testimonial::where('is_active', true)->get();
+        $this->frontendText = \App\Models\FrontendText::first();
     }
 };
 
@@ -61,7 +63,7 @@ new class extends Component {
 
                 <div class="hero-actions">
                     <a href="https://wa.me/{{ $settings->whatsapp_number ?? '6281212345678' }}" class="btn-primary">
-                        <span>Konsultasi Gratis</span>
+                        <span>{{ $frontendText->hero['btn_primary'] ?? 'Konsultasi Gratis' }}</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path
@@ -70,7 +72,7 @@ new class extends Component {
                         </svg>
                     </a>
                     <a href="#projects" class="btn-secondary"
-                        x-on:click.prevent="gsap.to(window, {duration: 1, scrollTo: '#projects'})">Lihat Portfolio</a>
+                        x-on:click.prevent="gsap.to(window, {duration: 1, scrollTo: '#projects'})">{{ $frontendText->hero['btn_secondary'] ?? 'Lihat Portfolio' }}</a>
                 </div>
             </div>
         </div>
@@ -86,14 +88,11 @@ new class extends Component {
         <div class="marquee-track">
             @for ($i = 0; $i < 4; $i++)
                 <div class="marquee-item">
-                    <span class="marquee-icon">✦</span>
-                    <span>BERPENGALAMAN SEJAK 2015</span>
-                    <span class="marquee-dot"></span>
-                    <span>BAHAN ALUMINIUM GRADE A</span>
-                    <span class="marquee-dot"></span>
-                    <span>PENGIRIMAN SELURUH INDONESIA</span>
-                    <span class="marquee-dot"></span>
-                    <span>GARANSI PEMASANGAN</span>
+                    @foreach($frontendText->marquee ?? [] as $text)
+                        <span class="marquee-icon">✦</span>
+                        <span>{{ $text }}</span>
+                        <span class="marquee-dot"></span>
+                    @endforeach
                 </div>
             @endfor
         </div>
@@ -102,9 +101,9 @@ new class extends Component {
     <!-- ======================== SECTION 3: PORTFOLIO ======================== -->
     <section id="projects">
         <div class="reveal">
-            <p class="section-label">Karya Terbaru</p>
-            <h2 class="section-title">Portfolio Proyek</h2>
-            <p class="section-sub">Beberapa hasil pengerjaan terbaik kami untuk klien residensial dan komersial.</p>
+            <p class="section-label">{{ $frontendText->portfolio['label'] ?? 'Karya Terbaru' }}</p>
+            <h2 class="section-title">{{ $frontendText->portfolio['title'] ?? 'Portfolio Proyek' }}</h2>
+            <p class="section-sub">{{ $frontendText->portfolio['subtitle'] ?? 'Beberapa hasil pengerjaan terbaik kami untuk klien residensial dan komersial.' }}</p>
         </div>
 
         <div class="projects-grid">
@@ -131,10 +130,9 @@ new class extends Component {
     <!-- ======================== SECTION 3: PRODUCTS ======================== -->
     <section id="products">
         <div class="reveal">
-            <p class="section-label">Layanan Kami</p>
-            <h2 class="section-title">Solusi Aluminium <br /> Untuk Hunian Modern</h2>
-            <p class="section-sub">Kualitas premium dengan desain minimalis yang meningkatkan estetika bangunan Anda.
-            </p>
+            <p class="section-label">{{ $frontendText->services['label'] ?? 'Layanan Kami' }}</p>
+            <h2 class="section-title">{!! $frontendText->services['title'] ?? 'Solusi Aluminium <br /> Untuk Hunian Modern' !!}</h2>
+            <p class="section-sub">{{ $frontendText->services['subtitle'] ?? 'Kualitas premium dengan desain minimalis yang meningkatkan estetika bangunan Anda.' }}</p>
         </div>
 
         <div class="products-grid">
@@ -190,46 +188,67 @@ new class extends Component {
                             @endif
                         </div>
 
-                        <div class="showcase-floating-card top-right">
-                            <p class="floating-card-label">PROYEK SELESAI</p>
-                            <p class="floating-card-value">500+</p>
-                        </div>
-                        <div class="showcase-floating-card bottom-left">
-                            <p class="floating-card-label">KEPUASAN</p>
-                            <p class="floating-card-value">100%</p>
-                        </div>
+                        @if(isset($frontendText->showcase['badges']))
+                            @foreach($frontendText->showcase['badges'] as $idx => $badge)
+                                <div class="showcase-floating-card {{ $idx == 0 ? 'top-right' : 'bottom-left' }}">
+                                    <p class="floating-card-label">{{ $badge['label'] ?? '' }}</p>
+                                    <p class="floating-card-value">{{ $badge['value'] ?? '' }}</p>
+                                </div>
+                            @endforeach
+                        @else
+                            <div class="showcase-floating-card top-right">
+                                <p class="floating-card-label">PROYEK SELESAI</p>
+                                <p class="floating-card-value">500+</p>
+                            </div>
+                            <div class="showcase-floating-card bottom-left">
+                                <p class="floating-card-label">KEPUASAN</p>
+                                <p class="floating-card-value">100%</p>
+                            </div>
+                        @endif
                     </div>
                 </div>
 
                 <div class="showcase-content reveal-right">
-                    <p class="section-label">Standar Kualitas</p>
-                    <h2 class="section-title">Mengapa Memilih <br /> Faris Jaya?</h2>
+                    <p class="section-label">{{ $frontendText->showcase['label'] ?? 'Standar Kualitas' }}</p>
+                    <h2 class="section-title">{!! $frontendText->showcase['title'] ?? 'Mengapa Memilih <br /> Faris Jaya?' !!}</h2>
 
                     <ul class="showcase-features">
-                        <li class="showcase-feature">
-                            <div class="feature-icon">✓</div>
-                            <div class="feature-text">
-                                <h4>Presisi & Akurasi</h4>
-                                <p style="color: rgba(255,255,255,0.4); font-size: 14px;">Pemotongan dan perakitan
-                                    menggunakan alat modern.</p>
-                            </div>
-                        </li>
-                        <li class="showcase-feature">
-                            <div class="feature-icon">✓</div>
-                            <div class="feature-text">
-                                <h4>Bahan Anti Korosi</h4>
-                                <p style="color: rgba(255,255,255,0.4); font-size: 14px;">Aluminium kualitas tinggi
-                                    tahan cuaca ekstrem.</p>
-                            </div>
-                        </li>
-                        <li class="showcase-feature">
-                            <div class="feature-icon">✓</div>
-                            <div class="feature-text">
-                                <h4>Tim Profesional</h4>
-                                <p style="color: rgba(255,255,255,0.4); font-size: 14px;">Teknisi berpengalaman dalam
-                                    proyek perumahan & gedung.</p>
-                            </div>
-                        </li>
+                        @if(isset($frontendText->showcase['features']))
+                            @foreach($frontendText->showcase['features'] as $feature)
+                                <li class="showcase-feature">
+                                    <div class="feature-icon">{{ $feature['icon'] ?? '✓' }}</div>
+                                    <div class="feature-text">
+                                        <h4>{{ $feature['title'] ?? '' }}</h4>
+                                        <p style="color: rgba(255,255,255,0.4); font-size: 14px;">{{ $feature['desc'] ?? '' }}</p>
+                                    </div>
+                                </li>
+                            @endforeach
+                        @else
+                            <li class="showcase-feature">
+                                <div class="feature-icon">✓</div>
+                                <div class="feature-text">
+                                    <h4>Presisi & Akurasi</h4>
+                                    <p style="color: rgba(255,255,255,0.4); font-size: 14px;">Pemotongan dan perakitan
+                                        menggunakan alat modern.</p>
+                                </div>
+                            </li>
+                            <li class="showcase-feature">
+                                <div class="feature-icon">✓</div>
+                                <div class="feature-text">
+                                    <h4>Bahan Anti Korosi</h4>
+                                    <p style="color: rgba(255,255,255,0.4); font-size: 14px;">Aluminium kualitas tinggi
+                                        tahan cuaca ekstrem.</p>
+                                </div>
+                            </li>
+                            <li class="showcase-feature">
+                                <div class="feature-icon">✓</div>
+                                <div class="feature-text">
+                                    <h4>Tim Profesional</h4>
+                                    <p style="color: rgba(255,255,255,0.4); font-size: 14px;">Teknisi berpengalaman dalam
+                                        proyek perumahan & gedung.</p>
+                                </div>
+                            </li>
+                        @endif
                     </ul>
 
                     <div style="margin-top: 48px;">
@@ -245,8 +264,8 @@ new class extends Component {
     <!-- ======================== SECTION 6: TESTIMONIALS ======================== -->
     <section id="testimonials" style="padding: 120px 24px; max-width: 1200px; margin: 0 auto;">
         <div class="reveal" style="text-align: center; margin-bottom: 64px;">
-            <p class="section-label">Testimoni</p>
-            <h2 class="section-title">Apa Kata Mereka?</h2>
+            <p class="section-label">{{ $frontendText->testimonials['label'] ?? 'Testimoni' }}</p>
+            <h2 class="section-title">{{ $frontendText->testimonials['title'] ?? 'Apa Kata Mereka?' }}</h2>
         </div>
 
         <div class="testimonials-slider">
@@ -283,10 +302,9 @@ new class extends Component {
     <!-- ======================== SECTION 7: CTA ======================== -->
     <section id="contact">
         <div class="cta-container reveal">
-            <p class="section-label" style="margin-bottom:16px">Mulai Sekarang</p>
-            <h2 class="cta-title">Siap Wujudkan<br />Rumah Impian Anda?</h2>
-            <p class="cta-sub">Konsultasikan kebutuhan aluminium Anda secara gratis dengan tim ahli kami. Dapatkan
-                estimasi harga terbaik hari ini juga!</p>
+            <p class="section-label" style="margin-bottom:16px">{{ $frontendText->cta['label'] ?? 'Mulai Sekarang' }}</p>
+            <h2 class="cta-title">{!! $frontendText->cta['title'] ?? 'Siap Wujudkan<br />Rumah Impian Anda?' !!}</h2>
+            <p class="cta-sub">{{ $frontendText->cta['subtitle'] ?? 'Konsultasikan kebutuhan aluminium Anda secara gratis dengan tim ahli kami. Dapatkan estimasi harga terbaik hari ini juga!' }}</p>
 
             <div class="cta-actions">
                 <a href="https://wa.me/{{ $settings->whatsapp_number ?? '6281212345678' }}" class="btn-whatsapp"
@@ -295,7 +313,7 @@ new class extends Component {
                         <path
                             d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
                     </svg>
-                    Chat WhatsApp
+                    {{ $frontendText->cta['button_text'] ?? 'Chat WhatsApp' }}
                 </a>
             </div>
 

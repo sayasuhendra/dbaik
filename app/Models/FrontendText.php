@@ -9,6 +9,9 @@ class FrontendText extends Model
     protected $guarded = [];
 
     protected $casts = [
+        'portfolio_detail' => 'array',
+        'navbar' => 'array',
+        'hero' => 'array',
         'marquee' => 'array',
         'portfolio' => 'array',
         'services' => 'array',
