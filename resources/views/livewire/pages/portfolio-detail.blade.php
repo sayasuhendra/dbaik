@@ -139,7 +139,7 @@ new class extends Component {
             </nav>
             <h1 class="project-title">{{ $project->title }}</h1>
             <div class="project-meta-row">
-                <span class="project-badge">{{ $project->category }}</span>
+                <span class="project-badge">{{ is_array($project->category) ? implode(', ', $project->category) : $project->category }}</span>
                 <span style="color: rgba(255,255,255,0.5); font-size: 14px;">📍 {{ $project->location }}</span>
                 <span style="color: rgba(255,255,255,0.5); font-size: 14px;">📅 {{ $project->year }}</span>
             </div>
@@ -154,8 +154,8 @@ new class extends Component {
                         style="font-size: 11px; font-weight: 700; letter-spacing: .15em; color: var(--gold-400); margin-bottom: 20px; text-transform: uppercase;">
                         {{ $ft->portfolio_detail['desc_label'] ?? 'Deskripsi Proyek' }}</h3>
                     <div style="font-size: 16px; color: rgba(255,255,255,0.7); line-height: 1.8;">
-                        @foreach($project->description as $p)
-                            <p style="margin-bottom: 16px;">{{ $p }}</p>
+                        @foreach($project->description ?? [] as $p)
+                            <p style="margin-bottom: 16px;">{{ is_array($p) ? ($p['line'] ?? '') : $p }}</p>
                         @endforeach
                     </div>
                 </section>
