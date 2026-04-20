@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('frontend_texts', function (Blueprint $table) {
-            //
+            $table->json('portfolio_detail')->nullable()->after('id');
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('frontend_texts', function (Blueprint $table) {
-            //
+            $table->dropColumn('portfolio_detail');
         });
     }
 };

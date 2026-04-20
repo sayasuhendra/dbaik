@@ -7,12 +7,14 @@ new class extends Component {
     public $project;
     public $relatedProjects;
     public $settings;
+    public $ft;
 
     public function mount($id) {
         try {
             $this->project = Project::findOrFail($id);
             $this->relatedProjects = Project::where('id', '!=', $id)->latest()->take(3)->get();
             $this->settings = SiteSetting::first() ?? new SiteSetting(['whatsapp_number' => '6281212345678']);
+            $this->ft = \App\Models\FrontendText::first();
         } catch (\Exception $e) {
             abort(404);
         }
@@ -150,7 +152,7 @@ new class extends Component {
                 <section class="description-section" style="margin-bottom: 48px;">
                     <h3
                         style="font-size: 11px; font-weight: 700; letter-spacing: .15em; color: var(--gold-400); margin-bottom: 20px; text-transform: uppercase;">
-                        Deskripsi Proyek</h3>
+                        {{ $ft->portfolio_detail['desc_label'] ?? 'Deskripsi Proyek' }}</h3>
                     <div style="font-size: 16px; color: rgba(255,255,255,0.7); line-height: 1.8;">
                         @foreach($project->description as $p)
                             <p style="margin-bottom: 16px;">{{ $p }}</p>
@@ -161,7 +163,7 @@ new class extends Component {
                 <section class="gallery-section">
                     <h3
                         style="font-size: 11px; font-weight: 700; letter-spacing: .15em; color: var(--gold-400); margin-bottom: 24px; text-transform: uppercase;">
-                        Galeri Foto</h3>
+                        {{ $ft->portfolio_detail['gallery_label'] ?? 'Galeri Foto' }}</h3>
                     <div class="photo-grid">
                         @foreach($project->photos as $photo)
                             <a href="{{ asset($photo) }}" class="glightbox photo-item">
@@ -176,7 +178,7 @@ new class extends Component {
                 <div class="sidebar-card">
                     <h4
                         style="font-size: 11px; font-weight: 700; letter-spacing: .1em; color: var(--gold-400); margin-bottom: 20px; text-transform: uppercase;">
-                        Detail Pekerjaan</h4>
+                        {{ $ft->portfolio_detail['work_label'] ?? 'Detail Pekerjaan' }}</h4>
                     <div
                         style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
                         <span style="color: rgba(255,255,255,0.5); font-size: 14px;">Tipe</span>
@@ -190,14 +192,14 @@ new class extends Component {
                     <a href="https://wa.me/{{ preg_replace('/\D/', '', $settings->whatsapp_number) }}" target="_blank"
                         class="btn-whatsapp"
                         style="margin-top: 24px; width: 100%; display: flex; justify-content: center; text-decoration: none;">
-                        💬 Tanya Proyek Serupa
+                        {{ $ft->portfolio_detail['wa_button'] ?? '💬 Tanya Proyek Serupa' }}
                     </a>
                 </div>
 
                 <div class="sidebar-card">
                     <h4
                         style="font-size: 11px; font-weight: 700; letter-spacing: .1em; color: var(--gold-400); margin-bottom: 20px; text-transform: uppercase;">
-                        Proyek Lainnya</h4>
+                        {{ $ft->portfolio_detail['related_label'] ?? 'Proyek Lainnya' }}</h4>
                     @foreach($relatedProjects as $rel)
                         <a href="{{ route('portfolio.detail', $rel->id) }}"
                             style="display: flex; gap: 12px; align-items: center; text-decoration: none; margin-bottom: 16px;">
