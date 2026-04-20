@@ -9,12 +9,14 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Table;
 
 class SiteSettingResource extends Resource
@@ -35,6 +37,17 @@ class SiteSettingResource extends Resource
                 TextInput::make('whatsapp_number'),
                 TextInput::make('office_hours'),
                 TextInput::make('location_text'),
+                TextInput::make('location_url')
+                    ->url()
+                    ->helperText('Contoh: https://maps.app.goo.gl/...'),
+                FileUpload::make('square_logo')
+                    ->image()
+                    ->disk('public')
+                    ->directory('site-logos'),
+                FileUpload::make('horizontal_logo')
+                    ->image()
+                    ->disk('public')
+                    ->directory('site-logos'),
             ]);
     }
 
@@ -43,6 +56,8 @@ class SiteSettingResource extends Resource
         return $table
             ->recordTitleAttribute('hero_title')
             ->columns([
+                ImageColumn::make('square_logo'),
+                ImageColumn::make('horizontal_logo'),
                 TextColumn::make('hero_title')
                     ->searchable(),
                 TextColumn::make('whatsapp_number')

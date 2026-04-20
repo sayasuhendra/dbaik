@@ -41,9 +41,16 @@ new class extends Component {
 
         <div class="container relative z-10">
             <div class="reveal">
-                <div class="hero-badge">
-                    <span>{{ $settings->location_text ?? 'Jakarta & Sekitarnya' }}</span>
-                </div>
+                @if(!empty($settings->location_url))
+                    <a href="{{ $settings->location_url }}" target="_blank" rel="noopener noreferrer" class="hero-badge"
+                        style="text-decoration: none; position: relative; z-index: 20; cursor: pointer;">
+                        <span>{{ $settings->location_text ?? 'Jakarta & Sekitarnya' }}</span>
+                    </a>
+                @else
+                    <div class="hero-badge">
+                        <span>{{ $settings->location_text ?? 'Jakarta & Sekitarnya' }}</span>
+                    </div>
+                @endif
                 <h1 class="hero-title">
                     <span
                         class="gradient-text">{{ $settings->hero_title ?? 'Keindahan & Ketahanan Tanpa Kompromi' }}</span>
@@ -165,7 +172,22 @@ new class extends Component {
                 <div class="showcase-visual reveal-left">
                     <div class="showcase-card-main">
                         <div class="showcase-logo-display">
-                            <span style="color: var(--gold-400); font-weight: 800;">FJA</span>
+                            @if($settings->square_logo)
+                                <img src="{{ asset('storage/' . $settings->square_logo) }}" alt="Faris Jaya Logo"
+                                    style="max-height: 300px; max-width: 300px; object-fit: contain;">
+                            @else
+                                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"
+                                    style="height: 120px; width: 120px; color: var(--gold-400);">
+                                    <rect x="10" y="10" width="80" height="80" rx="10" stroke="currentColor"
+                                        stroke-width="5" />
+                                    <!-- Elegant F -->
+                                    <path d="M30 30h25M30 48h18M30 30v40" stroke="currentColor" stroke-width="5"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <!-- Elegant J -->
+                                    <path d="M70 30v30c0 5.5-4.5 10-10 10" stroke="currentColor" stroke-width="5"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            @endif
                         </div>
 
                         <div class="showcase-floating-card top-right">
@@ -281,17 +303,24 @@ new class extends Component {
                 <div class="info-card reveal">
                     <div class="info-card-icon">📍</div>
                     <div class="info-card-title">Lokasi</div>
-                    <div class="info-card-value">Jl. Aluminium Raya No. 1<br />Kota Anda</div>
+                    <div class="info-card-value">
+                        @if(!empty($settings->location_url))
+                            <a href="{{ $settings->location_url }}" target="_blank" rel="noopener noreferrer"
+                                style="color: inherit; text-decoration: none; border-bottom: 1px dashed rgba(255,255,255,0.4); padding-bottom: 2px;">{{ $settings->location_text ?? 'Jl. Aluminium Raya No. 1, Kota Anda' }}</a>
+                        @else
+                            {{ $settings->location_text ?? 'JI. Pangeran Antasari, Sumber. Cirebon' }}
+                        @endif
+                    </div>
                 </div>
                 <div class="info-card reveal">
                     <div class="info-card-icon">🕙</div>
                     <div class="info-card-title">Jam Operasional</div>
-                    <div class="info-card-value">Senin–Sabtu<br />08.00 – 17.00 WIB</div>
+                    <div class="info-card-value">{{ $settings->office_hours ?? 'Senin–Sabtu, 08.00 – 17.00 WIB' }}</div>
                 </div>
                 <div class="info-card reveal">
                     <div class="info-card-icon">📱</div>
                     <div class="info-card-title">WhatsApp</div>
-                    <div class="info-card-value">+{{ $settings->whatsapp_number ?? '62 812 1234 5678' }}</div>
+                    <div class="info-card-value">+{{ $settings->whatsapp_number ?? '+628170200885' }}</div>
                 </div>
             </div>
         </div>

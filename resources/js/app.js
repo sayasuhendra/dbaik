@@ -62,6 +62,7 @@ const initGlobalAnimations = () => {
         const toggleMenu = () => {
             const isOpen = mobileNav.classList.toggle("open");
             burger.setAttribute("aria-expanded", isOpen);
+            burger.classList.toggle("open", isOpen);
             if (isOpen) {
                 gsap.fromTo(".mobile-nav a",
                     { y: 30, opacity: 0 },
@@ -70,8 +71,11 @@ const initGlobalAnimations = () => {
             }
         };
         burger.onclick = toggleMenu;
-        if (mobileClose) mobileClose.onclick = () => mobileNav.classList.remove("open");
-        mobileLinks.forEach(link => link.onclick = () => mobileNav.classList.remove("open"));
+        mobileLinks.forEach(link => link.onclick = () => {
+            mobileNav.classList.remove("open");
+            burger.classList.remove("open");
+            burger.setAttribute("aria-expanded", "false");
+        });
     }
 
     // --- SCROLL PROGRESS & REVEALS ---
@@ -97,8 +101,7 @@ const initGlobalAnimations = () => {
         start: "top 88%",
         onEnter: (els) => {
             els.forEach(el => {
-                let x = el.classList.contains('reveal-left') ? -50 : (el.classList.contains('reveal-right') ? 50 : 0);
-                gsap.to(el, { opacity: 1, x, y: 0, duration: 0.8, ease: "power3.out" });
+                gsap.to(el, { opacity: 1, x: 0, y: 0, duration: 0.8, ease: "power3.out" });
             });
         },
         once: true
@@ -137,13 +140,15 @@ const initGlobalAnimations = () => {
     GLightbox({ selector: '.glightbox' });
 
     // --- GRADIENT TEXT ---
-    gsap.to(".gradient-text", {
-        backgroundPosition: "200% center",
-        duration: 4,
-        ease: "none",
-        repeat: -1,
-        yoyo: true
-    });
+    if (document.querySelector(".gradient-text")) {
+        gsap.to(".gradient-text", {
+            backgroundPosition: "200% center",
+            duration: 4,
+            ease: "none",
+            repeat: -1,
+            yoyo: true
+        });
+    }
 };
 
 document.addEventListener('livewire:navigated', initGlobalAnimations);

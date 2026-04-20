@@ -96,8 +96,8 @@
     .nav-logo img {
       height: 36px;
       width: auto;
-      filter: brightness(0) invert(1);
-      opacity: 0.9;
+      max-width: 100%;
+      object-fit: contain;
     }
 
     .nav-logo-text {
@@ -170,6 +170,24 @@
     .nav-burger:hover {
       background: rgba(184, 144, 31, 0.15);
       border-color: rgba(184, 144, 31, 0.3);
+    }
+
+    .nav-burger svg rect {
+      transform-origin: center;
+      transition: all 0.3s ease;
+    }
+
+    .nav-burger.open svg rect:nth-child(1) {
+      transform: translateY(4.1px) rotate(45deg);
+    }
+
+    .nav-burger.open svg rect:nth-child(2) {
+      opacity: 0;
+      transform: scale(0);
+    }
+
+    .nav-burger.open svg rect:nth-child(3) {
+      transform: translateY(-4.1px) rotate(-45deg);
     }
 
     .nav-burger svg {

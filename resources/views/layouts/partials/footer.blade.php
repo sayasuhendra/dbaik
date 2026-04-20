@@ -1,6 +1,6 @@
 <footer id="footer">
     <div class="footer-inner">
-        <div class="footer-brand">
+        <div class="footer-brand" style="max-width: 400px;">
             <h3>FARIS JAYA ALUMINIUM</h3>
             <p>Premium Aluminium Specialist — Sejak 2018</p>
         </div>

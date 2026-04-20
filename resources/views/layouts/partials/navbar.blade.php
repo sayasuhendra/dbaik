@@ -1,13 +1,32 @@
 <nav id="navbar" role="navigation" aria-label="Main navigation">
     <a href="{{ route('home') }}" class="nav-logo" aria-label="Faris Jaya Aluminium home">
-        <div class="nav-logo-text">
-            FARIS JAYA
-            <span>ALUMINIUM</span>
+        @php
+            $settings = \App\Models\SiteSetting::first();
+        @endphp
+        <div class="nav-logo-text" style="display: flex; align-items: center; gap: 12px;">
+            @if($settings && $settings->horizontal_logo)
+                <img src="{{ asset('storage/' . $settings->horizontal_logo) }}" alt="Faris Jaya Aluminium Logo"
+                    style="max-height: 64px; width: auto; object-fit: contain;">
+            @else
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    style="height: 32px; width: 32px; color: var(--gold-400);">
+                    <rect x="10" y="10" width="80" height="80" rx="10" stroke="currentColor" stroke-width="6" />
+                    <path d="M30 30h25M30 48h18M30 30v40" stroke="currentColor" stroke-width="6" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M70 30v30c0 5.5-4.5 10-10 10" stroke="currentColor" stroke-width="6" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            @endif
+            <div style="display: flex; flex-direction: column; align-items: flex-start; line-height: 1.1;">
+                <span style="font-size: 18px; font-weight: 800; letter-spacing: 0.5px;">FARIS JAYA</span>
+                <span
+                    style="font-size: 12px; font-weight: 600; color: var(--gold-400); letter-spacing: 2px;">ALUMINIUM</span>
+            </div>
         </div>
     </a>
     <ul class="nav-links">
-        <li><a href="{{ Request::is('/') ? '#projects' : route('home').'#projects' }}">Portofolio</a></li>
-        <li><a href="{{ Request::is('/') ? '#products' : route('home').'#products' }}">Produk</a></li>
+        <li><a href="{{ Request::is('/') ? '#projects' : route('home') . '#projects' }}">Portofolio</a></li>
+        <li><a href="{{ Request::is('/') ? '#products' : route('home') . '#products' }}">Produk</a></li>
         <li><a href="{{ route('home') }}#testimonials">Testimoni</a></li>
         <li><a href="#contact" class="nav-cta" id="nav-konsultasi">Konsultasi Gratis</a></li>
     </ul>
@@ -22,7 +41,6 @@
 
 <!-- Mobile Nav -->
 <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
-    <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Tutup menu">×</button>
     <a href="{{ route('home') }}#projects" class="mobile-link">Portofolio</a>
     <a href="{{ route('home') }}#products" class="mobile-link">Produk</a>
     <a href="{{ route('home') }}#testimonials" class="mobile-link">Testimoni</a>
