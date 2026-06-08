@@ -1,7 +1,7 @@
 @php
     $settings = \App\Models\SiteSetting::first();
 @endphp
-<a href="https://wa.me/{{ $settings->whatsapp_number ?? '6281212345678' }}?text=Halo%20Faris%20Jaya%20Aluminium%2C%20saya%20ingin%20konsultasi%20mengenai%20produk%20aluminium"
+<a href="https://wa.me/{{ $settings->whatsapp_number ?? '628111513335' }}?text=Halo%20Dbaik%2C%20saya%20ingin%20konsultasi%20mengenai%jasa%20kamu"
     id="wa-float" aria-label="Chat WhatsApp" target="_blank" rel="noopener noreferrer">
     <svg width="30" height="30" viewBox="0 0 24 24" fill="white" aria-hidden="true">
         <path

@@ -13,9 +13,9 @@ state([
 ]);
 
 mount(function ($slug) {
-    $this->category = ProductCategory::where('slug', $slug)->firstOrFail();
+    $this->category = ProductCategory::where('slug', $slug)->where('is_active', true)->firstOrFail();
     $this->images = $this->category->images()->orderBy('sort_order')->get();
-    $this->otherCategories = ProductCategory::where('id', '!=', $this->category->id)->get();
+    $this->otherCategories = ProductCategory::where('id', '!=', $this->category->id)->where('is_active', true)->get();
     $this->ft = \App\Models\FrontendText::first();
 });
 
@@ -78,14 +78,19 @@ mount(function ($slug) {
             @php
                 $imgUrl = str_starts_with($image->path, 'img/') ? asset($image->path) : asset('storage/' . $image->path);
             @endphp
-            <a href="{{ $imgUrl }}" class="glightbox photo-item" data-gallery="product-cat">
+            <div class="photo-item">
                 <img src="{{ $imgUrl }}" alt="{{ $category->name }} {{ $loop->iteration }}" loading="lazy" />
-                <div class="photo-overlay">
-                    <div class="zoom-icon">
+                <div class="photo-overlay" style="flex-direction: column; gap: 16px;">
+                    <a href="{{ $imgUrl }}" class="glightbox zoom-icon" data-gallery="product-cat">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                    </div>
+                    </a>
+                    @if($image->link)
+                    <a href="{{ $image->link }}" target="_blank" class="btn-primary px-6 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-transform hover:scale-105" onclick="event.stopPropagation()">
+                        {{ $image->link_label ?? 'Kunjungi Link' }}
+                    </a>
+                    @endif
                 </div>
-            </a>
+            </div>
             @endforeach
         </div>
         @else

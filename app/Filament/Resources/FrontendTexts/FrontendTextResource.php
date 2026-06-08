@@ -17,8 +17,11 @@ use Filament\Tables\Table;
 class FrontendTextResource extends Resource
 {
     protected static ?string $model = FrontendText::class;
+
     protected static ?string $navigationLabel = 'Pengaturan Teks';
+
     protected static ?string $pluralModelLabel = 'Pengaturan Teks';
+
     protected static ?string $modelLabel = 'Teks';
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedPencilSquare;

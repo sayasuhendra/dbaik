@@ -15,12 +15,12 @@ new class extends Component {
 
     public function mount()
     {
-        $this->projects = Project::latest()->get();
-        $this->categories = ProductCategory::all();
+        $this->projects = Project::where('is_active', true)->latest()->get();
+        $this->categories = ProductCategory::where('is_active', true)->get();
         $this->settings = SiteSetting::first() ?? new SiteSetting([
             'hero_title' => 'Membangun Masa Depan Digital dengan AI & Teknologi',
             'hero_subtitle' => 'DBAIK membantu bisnis dan organisasi berkembang melalui solusi AI, website, software, mobile app, automation, dan game development.',
-            'whatsapp_number' => '628170200885',
+            'whatsapp_number' => '628111513335',
             'office_hours' => 'Senin–Sabtu, 08.00 – 17.00 WIB',
             'location_text' => 'Bandung, Indonesia.'
         ]);
@@ -55,7 +55,7 @@ new class extends Component {
                 </p>
 
                 <div class="hero-actions mb-16">
-                    <a href="https://wa.me/{{ $settings->whatsapp_number ?? '628170200885' }}" class="btn-primary">
+                    <a href="https://wa.me/{{ $settings->whatsapp_number ?? '628111513335' }}" class="btn-primary">
                         <span>{{ $frontendText->hero['btn_primary'] ?? 'Konsultasi Gratis' }}</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -899,7 +899,7 @@ new class extends Component {
             </p>
 
             <div class="cta-actions flex flex-wrap justify-center gap-4">
-                <a href="https://wa.me/{{ $settings->whatsapp_number ?? '628170200885' }}" class="btn-whatsapp"
+                <a href="https://wa.me/{{ $settings->whatsapp_number ?? '628111513335' }}" class="btn-whatsapp"
                     target="_blank" rel="noopener noreferrer">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                         <path
@@ -907,7 +907,7 @@ new class extends Component {
                     </svg>
                     {{ $frontendText->cta['button_text'] ?? 'Hubungi Kami' }}
                 </a>
-                <a href="https://calendly.com" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+                <a href="{{ route('schedule-meeting') }}" class="btn-secondary">
                     📅 Jadwalkan Meeting
                 </a>
             </div>
@@ -933,7 +933,7 @@ new class extends Component {
                 <div class="info-card reveal">
                     <div class="info-card-icon">📱</div>
                     <div class="info-card-title">WhatsApp</div>
-                    <div class="info-card-value">+{{ $settings->whatsapp_number ?? '628170200885' }}</div>
+                    <div class="info-card-value">+{{ $settings->whatsapp_number ?? '628111513335' }}</div>
                 </div>
             </div>
         </div>

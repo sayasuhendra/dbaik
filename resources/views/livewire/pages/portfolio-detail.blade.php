@@ -11,9 +11,9 @@ new class extends Component {
 
     public function mount($id) {
         try {
-            $this->project = Project::findOrFail($id);
-            $this->relatedProjects = Project::where('id', '!=', $id)->latest()->take(3)->get();
-            $this->settings = SiteSetting::first() ?? new SiteSetting(['whatsapp_number' => '6281212345678']);
+            $this->project = Project::where('id', $id)->where('is_active', true)->firstOrFail();
+            $this->relatedProjects = Project::where('id', '!=', $id)->where('is_active', true)->latest()->take(3)->get();
+            $this->settings = SiteSetting::first() ?? new SiteSetting(['whatsapp_number' => '628111513335']);
             $this->ft = \App\Models\FrontendText::first();
         } catch (\Exception $e) {
             abort(404);

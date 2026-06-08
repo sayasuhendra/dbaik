@@ -328,7 +328,7 @@ new class extends Component {
                     <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-cyan-500/5 rounded-full blur-xl pointer-events-none"></div>
                     <h4 class="text-xs font-black text-white tracking-wide uppercase">Butuh Konsultasi?</h4>
                     <p class="text-[10px] text-slate-400 mt-2 leading-relaxed">Hubungi Account Manager Anda secara instan atau ajukan tiket support untuk kebutuhan integrasi custom.</p>
-                    <a href="https://wa.me/6281234567890" target="_blank" class="w-full btn-primary py-2.5 rounded-xl flex items-center justify-center font-extrabold text-[10px] uppercase mt-4 text-center" style="background: linear-gradient(135deg, var(--gold-400), var(--gold-500)); color: black;">
+                    <a href="https://wa.me/{{ \App\Models\SiteSetting::first()->whatsapp_number ?? '628111513335' }}" target="_blank" class="w-full btn-primary py-2.5 rounded-xl flex items-center justify-center font-extrabold text-[10px] uppercase mt-4 text-center" style="background: linear-gradient(135deg, var(--gold-400), var(--gold-500)); color: black;">
                         WhatsApp Agent &rarr;
                     </a>
                 </div>

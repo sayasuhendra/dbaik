@@ -22,7 +22,7 @@ class CategoryProjectSeeder extends Seeder
             [
                 'hero_title' => 'Membangun Masa Depan Digital dengan AI & Teknologi',
                 'hero_subtitle' => 'DBAIK membantu bisnis dan organisasi berkembang melalui solusi AI, website, software, mobile app, automation, dan game development.',
-                'whatsapp_number' => '628170200885',
+                'whatsapp_number' => '628111513335',
                 'office_hours' => 'Senin–Sabtu, 08.00 – 17.00 WIB',
                 'location_text' => 'Bandung, Indonesia',
                 'location_url' => 'https://maps.app.goo.gl/u361grgLFw6Emzso9',

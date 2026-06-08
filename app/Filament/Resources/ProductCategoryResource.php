@@ -12,14 +12,16 @@ use Filament\Actions\EditAction;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
-use Illuminate\Support\Str;
+use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Table;
+use Illuminate\Support\Str;
 
 class ProductCategoryResource extends Resource
 {
@@ -40,10 +42,13 @@ class ProductCategoryResource extends Resource
                 TextInput::make('slug')
                     ->required()
                     ->unique(ignoreRecord: true),
+                Toggle::make('is_active')
+                    ->label('Active / Show')
+                    ->default(true),
                 FileUpload::make('thumbnail')
                     ->image()
                     ->directory('categories'),
-                
+
                 Repeater::make('images')
                     ->relationship('images')
                     ->schema([
@@ -51,12 +56,17 @@ class ProductCategoryResource extends Resource
                             ->image()
                             ->directory('products')
                             ->required(),
+                        TextInput::make('link')
+                            ->url()
+                            ->label('Link URL'),
+                        TextInput::make('link_label')
+                            ->label('Link Label (contoh: Beli Sekarang)'),
                         TextInput::make('sort_order')
                             ->numeric()
                             ->default(0),
                     ])
                     ->grid(2)
-                    ->columnSpanFull()
+                    ->columnSpanFull(),
             ]);
     }
 
@@ -70,6 +80,8 @@ class ProductCategoryResource extends Resource
                 TextColumn::make('slug')
                     ->searchable(),
                 ImageColumn::make('thumbnail'),
+                ToggleColumn::make('is_active')
+                    ->label('Active'),
                 TextColumn::make('created_at')
                     ->formatStateUsing(fn ($state) => $state?->format('d/m/Y H:i'))
                     ->sortable()

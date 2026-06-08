@@ -4,6 +4,7 @@ namespace App\Filament\Resources\ProjectResource\Tables;
 
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Table;
 
 class ProjectsTable
@@ -20,6 +21,8 @@ class ProjectsTable
                     ->circular()
                     ->stacked()
                     ->limit(3),
+                ToggleColumn::make('is_active')
+                    ->label('Active'),
                 TextColumn::make('created_at')
                     ->formatStateUsing(fn ($state) => $state?->format('d/m/Y H:i'))
                     ->sortable()

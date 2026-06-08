@@ -75,7 +75,7 @@ class BillingResource extends Resource
                     ->required(),
                 TextInput::make('whatsapp_number')
                     ->tel()
-                    ->placeholder('e.g., 628170200885 (empty defaults to user email/details)'),
+                    ->placeholder('e.g., 628111513335 (empty defaults to user email/details)'),
                 Placeholder::make('last_reminder_sent_at')
                     ->content(fn ($record) => $record?->last_reminder_sent_at?->format('d M Y H:i:s') ?? 'Never sent'),
             ]);

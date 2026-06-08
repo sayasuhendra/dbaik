@@ -3,7 +3,6 @@
 namespace App\Filament\Resources\FrontendTexts\Pages;
 
 use App\Filament\Resources\FrontendTexts\FrontendTextResource;
-use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 
 class ListFrontendTexts extends ListRecords

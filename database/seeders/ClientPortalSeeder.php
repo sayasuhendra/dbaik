@@ -87,7 +87,7 @@ class ClientPortalSeeder extends Seeder
             'status' => 'pending',
             'due_date' => now()->addDays(3)->format('Y-m-d'),
             'recurring_billing' => true,
-            'whatsapp_number' => '081234567890',
+            'whatsapp_number' => '628111513335',
         ]);
 
         Billing::create([
@@ -98,7 +98,7 @@ class ClientPortalSeeder extends Seeder
             'status' => 'paid',
             'due_date' => now()->subDays(15)->format('Y-m-d'),
             'recurring_billing' => false,
-            'whatsapp_number' => '081234567890',
+            'whatsapp_number' => '628111513335',
         ]);
 
         Billing::create([
@@ -109,7 +109,7 @@ class ClientPortalSeeder extends Seeder
             'status' => 'overdue',
             'due_date' => now()->subDays(5)->format('Y-m-d'),
             'recurring_billing' => true,
-            'whatsapp_number' => '081234567890',
+            'whatsapp_number' => '628111513335',
         ]);
 
         // Seed for Budisantoso (Client)
