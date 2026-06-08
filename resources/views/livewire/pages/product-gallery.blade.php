@@ -22,7 +22,7 @@ mount(function ($slug) {
 ?>
 
 <div>
-    @section('title', $category->name . ' — Faris Jaya Aluminium')
+    @section('title', $category->name . ' — DBAIK Digital Agency')
 
     <style>
         .container-gallery { max-width: 1200px; margin: 0 auto; padding: 40px 24px; }
@@ -67,9 +67,9 @@ mount(function ($slug) {
 
     <div class="container-gallery">
         <div class="header">
-            <div class="header-cat">{{ $ft->gallery['label'] ?? 'Kategori Produk' }}</div>
+            <div class="header-cat">{{ $ft->gallery['label'] ?? 'Kategori Layanan' }}</div>
             <h1 class="header-title">{{ $category->name }}</h1>
-            <p class="header-sub">{{ $ft->gallery['subtitle'] ?? 'Berikut adalah koleksi pengerjaan kami untuk kategori ini. Kami mengutamakan kualitas material dan ketelitian pengerjaan.' }}</p>
+            <p class="header-sub">{{ $ft->gallery['subtitle'] ?? 'Kami menghadirkan standar kualitas teknologi terbaik untuk melayani kebutuhan bisnis dan operasional perusahaan Anda.' }}</p>
         </div>
 
         @if($images->count() > 0)
@@ -91,14 +91,14 @@ mount(function ($slug) {
         @else
         <div class="empty-state" style="text-align: center; padding: 100px 0; color: rgba(255,255,255,0.2);">
             <span style="font-size: 80px; display: block; margin-bottom: 20px;">📂</span>
-            {{ $ft->gallery['empty_text'] ?? 'Belum ada foto dalam kategori ini.' }}
+            {{ $ft->gallery['empty_text'] ?? 'Belum ada data dalam kategori ini.' }}
         </div>
         @endif
 
         <div class="other-categories" style="margin-top: 100px; padding-top: 60px; border-top: 1px solid rgba(255,255,255,0.06);">
             <div class="oc-header" style="text-align: center; margin-bottom: 40px;">
-                <h2 class="oc-title" style="font-size: 28px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 12px;">{{ $ft->other_categories['label'] ?? 'Katalog Produk Lainnya' }}</h2>
-                <p class="oc-sub" style="color: rgba(255,255,255,0.4); font-size: 14px;">{{ $ft->other_categories['title'] ?? 'Lihat kategori produk aluminium premium kami yang lain.' }}</p>
+                <h2 class="oc-title" style="font-size: 28px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 12px;">{{ $ft->other_categories['label'] ?? 'Layanan Premium Lainnya' }}</h2>
+                <p class="oc-sub" style="color: rgba(255,255,255,0.4); font-size: 14px;">{{ $ft->other_categories['title'] ?? 'Lihat kategori layanan premium kami yang lain.' }}</p>
             </div>
             
             <div class="category-grid">

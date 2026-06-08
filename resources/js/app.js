@@ -94,7 +94,12 @@ const initGlobalAnimations = () => {
         trigger: "body",
         start: "top -80px",
         onEnter: () => document.getElementById("navbar")?.classList.add("scrolled"),
-        onLeaveBack: () => document.getElementById("navbar")?.classList.remove("scrolled")
+        onLeaveBack: () => {
+            const navbar = document.getElementById("navbar");
+            if (navbar && !navbar.classList.contains('client-navbar')) {
+                navbar.classList.remove("scrolled");
+            }
+        }
     });
 
     ScrollTrigger.batch(".reveal, .reveal-left, .reveal-right", {

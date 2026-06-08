@@ -5,10 +5,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description"
-        content="Faris Jaya Aluminium — Spesialis Kusen, Pintu, Jendela, Kaca & Plafond berkualitas premium." />
+        content="DBAIK Digital Agency — Silicon Valley Level AI, Software House, and Digital Automation partner based in Indonesia." />
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title', 'Faris Jaya Aluminium — Premium Aluminium Specialist')</title>
+    <title>@yield('title', 'DBAIK Digital Agency — Silicon Valley Level AI & Technology Partner')</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
@@ -84,22 +84,36 @@
 <body>
     <!-- Global Elements -->
     <div id="progress-bar"></div>
-    <div id="particles"></div>
-    <div id="back-to-top" title="Go to top">↑</div>
+    @if(!request()->routeIs('client.*'))
+        <div id="particles"></div>
+        <div id="back-to-top" title="Go to top">↑</div>
 
-    <!-- Floating WA -->
-    @include('layouts.partials.wa-float')
+        <!-- Floating WA -->
+        @include('layouts.partials.wa-float')
+    @endif
 
     <!-- Navbar -->
     @include('layouts.partials.navbar')
 
     <!-- Main Content -->
-    <main>
+    <main @if(request()->routeIs('client.*')) class="pt-20 md:pt-24 px-4 sm:px-6 lg:px-8" @endif>
         {{ $slot }}
     </main>
 
     <!-- Footer -->
-    @include('layouts.partials.footer')
+    @if(request()->routeIs('client.*'))
+        <footer class="py-8 border-t border-white/5 bg-[#030712] relative z-10">
+            <div class="container mx-auto px-6 max-w-7xl flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+                <div>&copy; {{ date('Y') }} DBAIK Digital Agency. All rights reserved.</div>
+                <div class="flex gap-6">
+                    <a href="{{ route('home') }}" class="hover:text-white transition-colors">Website Beranda</a>
+                    <a href="{{ route('home') }}#contact" class="hover:text-white transition-colors">Kontak Support</a>
+                </div>
+            </div>
+        </footer>
+    @else
+        @include('layouts.partials.footer')
+    @endif
 
     <!-- Scripts -->
 

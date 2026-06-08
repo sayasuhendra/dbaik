@@ -23,7 +23,7 @@ new class extends Component {
 ?>
 
 <div>
-    @section('title', $project->title . ' — Portofolio Faris Jaya Aluminium')
+    @section('title', $project->title . ' — Portofolio DBAIK Digital Agency')
 
     <style>
         .project-hero {

@@ -25,6 +25,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             FrontendTextSeeder::class,
+            CategoryProjectSeeder::class,
+            ClientPortalSeeder::class,
         ]);
     }
 }
