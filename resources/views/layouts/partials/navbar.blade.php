@@ -1,4 +1,5 @@
-<nav id="navbar" class="{{ request()->routeIs('client.*') ? 'scrolled client-navbar' : '' }}" role="navigation" aria-label="Main navigation">
+<nav id="navbar" class="{{ request()->routeIs('client.*') ? 'scrolled client-navbar' : '' }}" role="navigation"
+    aria-label="Main navigation">
     <a href="{{ route('home') }}" class="nav-logo" aria-label="Faris Jaya Aluminium home">
         @php
             $settings = \App\Models\SiteSetting::first();
@@ -11,15 +12,18 @@
             @else
                 <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"
                     style="height: 36px; width: 36px; color: var(--gold-400);">
-                    <rect x="15" y="15" width="70" height="70" rx="18" stroke="currentColor" stroke-width="6" stroke-linejoin="round" />
+                    <rect x="15" y="15" width="70" height="70" rx="18" stroke="currentColor" stroke-width="6"
+                        stroke-linejoin="round" />
                     <circle cx="35" cy="35" r="7" fill="currentColor" />
                     <circle cx="65" cy="35" r="7" fill="currentColor" />
                     <circle cx="50" cy="65" r="7" fill="currentColor" />
-                    <path d="M35 35 L65 35 L50 65 Z" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M35 35 L65 35 L50 65 Z" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                        stroke-linejoin="round" />
                 </svg>
             @endif
             <div style="display: flex; flex-direction: column; align-items: flex-start; line-height: 1.1;">
-                <span style="font-size: 18px; font-weight: 900; letter-spacing: 0.5px;">{{ $ft->navbar['brand_1'] ?? 'DBAIK' }}</span>
+                <span
+                    style="font-size: 18px; font-weight: 900; letter-spacing: 0.5px;">{{ $ft->navbar['brand_1'] ?? 'DBAIK' }}</span>
                 <span
                     style="font-size: 10px; font-weight: 800; color: var(--gold-400); letter-spacing: 2px;">{{ $ft->navbar['brand_2'] ?? 'DIGITAL AGENCY' }}</span>
             </div>
@@ -27,19 +31,25 @@
     </a>
     @if(request()->routeIs('client.*'))
         <ul class="nav-links">
-            <li><a href="{{ route('home') }}" class="text-xs font-bold text-slate-400 hover:text-white transition-colors">← Beranda Website</a></li>
+            <li><a href="{{ route('home') }}" class="text-xs font-bold text-slate-400 hover:text-white transition-colors">←
+                    Beranda Website</a></li>
         </ul>
     @else
         <ul class="nav-links">
-            <li><a href="{{ Request::is('/') ? '#projects' : route('home') . '#projects' }}">{{ $ft->navbar['menu_1'] ?? 'Portofolio' }}</a></li>
-            <li><a href="{{ Request::is('/') ? '#products' : route('home') . '#products' }}">{{ $ft->navbar['menu_2'] ?? 'Layanan' }}</a></li>
+            {{-- <li><a href="{{ Request::is('/') ? '#projects' : route('home') . '#projects' }}">{{ $ft->navbar['menu_1']
+                    ?? 'Portofolio' }}</a></li> --}}
+            <li><a
+                    href="{{ Request::is('/') ? '#products' : route('home') . '#products' }}">{{ $ft->navbar['menu_2'] ?? 'Layanan' }}</a>
+            </li>
             <li><a href="{{ route('home') }}#testimonials">{{ $ft->navbar['menu_3'] ?? 'Testimoni' }}</a></li>
             @auth
-                <li><a href="{{ route('client.portal') }}" style="color: var(--gold-400); font-weight: 700;">Client Portal</a></li>
+                <li><a href="{{ route('client.portal') }}" style="color: var(--gold-400); font-weight: 700;">Client Portal</a>
+                </li>
             @else
                 <li><a href="{{ route('client.login') }}" style="color: var(--gold-400); font-weight: 700;">Client Area</a></li>
             @endauth
-            <li><a href="#contact" class="nav-cta" id="nav-konsultasi">{{ $ft->navbar['menu_cta'] ?? 'Konsultasi Gratis' }}</a></li>
+            <li><a href="#contact" class="nav-cta"
+                    id="nav-konsultasi">{{ $ft->navbar['menu_cta'] ?? 'Konsultasi Gratis' }}</a></li>
         </ul>
     @endif
     @if(!request()->routeIs('client.*'))
@@ -66,6 +76,7 @@
         @else
             <a href="{{ route('client.login') }}" class="mobile-link" style="color:var(--gold-400)">Client Area</a>
         @endauth
-        <a href="#contact" class="mobile-link" style="color:var(--gold-300)">{{ $ft->navbar['menu_cta'] ?? 'Konsultasi Gratis' }} →</a>
+        <a href="#contact" class="mobile-link"
+            style="color:var(--gold-300)">{{ $ft->navbar['menu_cta'] ?? 'Konsultasi Gratis' }} →</a>
     @endif
 </nav>
