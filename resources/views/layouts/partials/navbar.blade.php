@@ -68,7 +68,7 @@
     @if(request()->routeIs('client.*'))
         <a href="{{ route('home') }}" class="mobile-link">← Beranda Website</a>
     @else
-        <a href="{{ route('home') }}#projects" class="mobile-link">{{ $ft->navbar['menu_1'] ?? 'Portofolio' }}</a>
+        {{-- <a href="{{ route('home') }}#projects" class="mobile-link">{{ $ft->navbar['menu_1'] ?? 'Portofolio' }}</a> --}}
         <a href="{{ route('home') }}#products" class="mobile-link">{{ $ft->navbar['menu_2'] ?? 'Layanan' }}</a>
         <a href="{{ route('home') }}#testimonials" class="mobile-link">{{ $ft->navbar['menu_3'] ?? 'Testimoni' }}</a>
         @auth
