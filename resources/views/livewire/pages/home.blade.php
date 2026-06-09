@@ -192,6 +192,7 @@ new class extends Component {
 
             <div class="products-grid">
                 <!-- 1. AI Solutions -->
+                @if($categories->contains('slug', 'ai-solutions'))
                 <div class="product-card reveal"
                     x-on:click="window.location='{{ route('product.gallery', 'ai-solutions') }}'">
                     <div>
@@ -205,8 +206,10 @@ new class extends Component {
                         <div class="product-arrow">→</div>
                     </div>
                 </div>
+                @endif
 
                 <!-- 2. Website Development -->
+                @if($categories->contains('slug', 'website-development'))
                 <div class="product-card reveal"
                     x-on:click="window.location='{{ route('product.gallery', 'website-development') }}'">
                     <div>
@@ -220,8 +223,10 @@ new class extends Component {
                         <div class="product-arrow">→</div>
                     </div>
                 </div>
+                @endif
 
                 <!-- 3. Software Development -->
+                @if($categories->contains('slug', 'software-development'))
                 <div class="product-card reveal"
                     x-on:click="window.location='{{ route('product.gallery', 'software-development') }}'">
                     <div>
@@ -235,8 +240,10 @@ new class extends Component {
                         <div class="product-arrow">→</div>
                     </div>
                 </div>
+                @endif
 
                 <!-- 4. Mobile App Development -->
+                @if($categories->contains('slug', 'mobile-app-development'))
                 <div class="product-card reveal"
                     x-on:click="window.location='{{ route('product.gallery', 'mobile-app-development') }}'">
                     <div>
@@ -250,8 +257,10 @@ new class extends Component {
                         <div class="product-arrow">→</div>
                     </div>
                 </div>
+                @endif
 
                 <!-- 5. AI Automation -->
+                @if($categories->contains('slug', 'ai-automation'))
                 <div class="product-card reveal"
                     x-on:click="window.location='{{ route('product.gallery', 'ai-automation') }}'">
                     <div>
@@ -265,8 +274,10 @@ new class extends Component {
                         <div class="product-arrow">→</div>
                     </div>
                 </div>
+                @endif
 
                 <!-- 6. Business Automation -->
+                @if($categories->contains('slug', 'business-automation'))
                 <div class="product-card reveal"
                     x-on:click="window.location='{{ route('product.gallery', 'business-automation') }}'">
                     <div>
@@ -280,8 +291,10 @@ new class extends Component {
                         <div class="product-arrow">→</div>
                     </div>
                 </div>
+                @endif
 
                 <!-- 7. Game Development -->
+                @if($categories->contains('slug', 'game-development'))
                 <div class="product-card reveal"
                     x-on:click="window.location='{{ route('product.gallery', 'game-development') }}'">
                     <div>
@@ -295,8 +308,10 @@ new class extends Component {
                         <div class="product-arrow">→</div>
                     </div>
                 </div>
+                @endif
 
                 <!-- 8. Technology Consulting -->
+                @if($categories->contains('slug', 'technology-consulting'))
                 <div class="product-card reveal"
                     x-on:click="window.location='{{ route('product.gallery', 'technology-consulting') }}'">
                     <div>
@@ -310,6 +325,7 @@ new class extends Component {
                         <div class="product-arrow">→</div>
                     </div>
                 </div>
+                @endif
             </div>
         </div>
     </section>
