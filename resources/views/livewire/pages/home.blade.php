@@ -568,14 +568,13 @@ new class extends Component {
     </section> --}}
 
     <!-- ======================== 5. PORTFOLIO SECTION ======================== -->
-    {{-- <section id="projects" class="relative z-10 py-32 bg-slate-900/10">
+    <section id="projects" class="relative z-10 py-32 bg-slate-900/10">
         <div class="container mx-auto max-w-7xl px-6">
             <div class="reveal">
                 <p class="section-label">{{ $frontendText->portfolio['label'] ?? 'Karya Unggulan' }}</p>
                 <h2 class="section-title">{{ $frontendText->portfolio['title'] ?? 'Digital Product Showcase' }}</h2>
                 <p class="section-sub">
-                    {{ $frontendText->portfolio['subtitle'] ?? 'Jelajahi portofolio proyek enterprise dan startup modern
-                    yang kami rancang dengan teknologi terdepan.' }}
+                    {{ $frontendText->portfolio['subtitle'] ?? 'Jelajahi portofolio proyek enterprise dan startup modern yang kami rancang dengan teknologi terdepan.' }}
                 </p>
             </div>
 
@@ -584,12 +583,12 @@ new class extends Component {
                 <button class="px-8 py-3 rounded-full text-sm font-bold transition-all border"
                     :class="activeCategory === 'all' ? 'bg-cyan-500 text-slate-950 border-cyan-400 font-extrabold shadow-[0_0_15px_rgba(6,182,212,0.3)]' : 'bg-transparent text-slate-300 border-white/10 hover:border-white/20'"
                     x-on:click="activeCategory = 'all'">Semua Proyek</button>
-                <button class="px-8 py-3 rounded-full text-sm font-bold transition-all border"
+                {{-- <button class="px-8 py-3 rounded-full text-sm font-bold transition-all border"
                     :class="activeCategory === 'AI Systems' ? 'bg-cyan-500 text-slate-950 border-cyan-400 font-extrabold shadow-[0_0_15px_rgba(6,182,212,0.3)]' : 'bg-transparent text-slate-300 border-white/10 hover:border-white/20'"
                     x-on:click="activeCategory = 'AI Systems'">AI Systems</button>
                 <button class="px-8 py-3 rounded-full text-sm font-bold transition-all border"
                     :class="activeCategory === 'SaaS Platforms' ? 'bg-cyan-500 text-slate-950 border-cyan-400 font-extrabold shadow-[0_0_15px_rgba(6,182,212,0.3)]' : 'bg-transparent text-slate-300 border-white/10 hover:border-white/20'"
-                    x-on:click="activeCategory = 'SaaS Platforms'">SaaS Platforms</button>
+                    x-on:click="activeCategory = 'SaaS Platforms'">SaaS Platforms</button> --}}
                 <button class="px-8 py-3 rounded-full text-sm font-bold transition-all border"
                     :class="activeCategory === 'Mobile Apps' ? 'bg-cyan-500 text-slate-950 border-cyan-400 font-extrabold shadow-[0_0_15px_rgba(6,182,212,0.3)]' : 'bg-transparent text-slate-300 border-white/10 hover:border-white/20'"
                     x-on:click="activeCategory = 'Mobile Apps'">Mobile Apps</button>
@@ -600,48 +599,45 @@ new class extends Component {
 
             <div class="projects-grid">
                 @forelse($projects as $project)
-                <div class="project-card reveal"
-                    x-show="activeCategory === 'all' || activeCategory === '{{ $project->category }}'"
-                    x-transition:enter="transition ease-out duration-300"
-                    x-transition:enter-start="opacity-0 translateY(20px)"
-                    x-on:click="window.location='{{ route('portfolio.detail', $project->id) }}'"
-                    style="display: flex; flex-direction: column;">
-                    <div class="project-img-wrapper">
-                        @php
-                        $pPhoto = (is_array($project->photos) && isset($project->photos[0])) ? $project->photos[0] :
-                        null;
-                        $pPhotoUrl = $pPhoto ? (str_starts_with($pPhoto, 'http') || str_starts_with($pPhoto, 'img/') ?
-                        $pPhoto : asset('storage/' . $pPhoto)) :
-                        'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80';
-                        @endphp
-                        <img src="{{ $pPhotoUrl }}" alt="{{ $project->title }}" loading="lazy">
-                        <div
-                            class="absolute top-4 left-4 bg-slate-950/80 border border-white/15 px-4 py-2 rounded-full text-[10px] font-bold tracking-widest text-cyan-400 uppercase">
-                            {{ $project->type }}
+                    <div class="project-card reveal"
+                        x-show="activeCategory === 'all' || activeCategory === '{{ $project->category }}'"
+                        x-transition:enter="transition ease-out duration-300"
+                        x-transition:enter-start="opacity-0 translateY(20px)"
+                        x-on:click="window.location='{{ route('portfolio.detail', $project->id) }}'"
+                        style="display: flex; flex-direction: column;">
+                        <div class="project-img-wrapper">
+                            @php
+                                $pPhoto = (is_array($project->photos) && isset($project->photos[0])) ? $project->photos[0] : null;
+                                $pPhotoUrl = $pPhoto ? (str_starts_with($pPhoto, 'http') || str_starts_with($pPhoto, 'img/') ? $pPhoto : asset('storage/' . $pPhoto)) : 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80';
+                            @endphp
+                            <img src="{{ $pPhotoUrl }}" alt="{{ $project->title }}" loading="lazy">
+                            <div
+                                class="absolute top-4 left-4 bg-slate-950/80 border border-white/15 px-4 py-2 rounded-full text-[10px] font-bold tracking-widest text-cyan-400 uppercase">
+                                {{ $project->type }}
+                            </div>
                         </div>
-                    </div>
-                    <div class="project-info flex-grow flex flex-col justify-between">
-                        <div>
-                            <p class="project-category">{{ $project->category }}</p>
-                            <h3 class="project-title">{{ $project->title }}</h3>
-                        </div>
-                        <div class="border-t border-white/10 w-full" style="margin-bottom: 6px;">
-                            <div class="flex items-center justify-between pt-6 w-full">
-                                <div>
-                                    <span class="project-location text-sm">📍 {{ $project->location }}</span>
-                                    <span class="text-sm font-bold text-slate-400">{{ $project->year }}</span>
+                        <div class="project-info flex-grow flex flex-col justify-between">
+                            <div>
+                                <p class="project-category">{{ $project->category }}</p>
+                                <h3 class="project-title">{{ $project->title }}</h3>
+                            </div>
+                            <div class="border-t border-white/10 w-full" style="margin-bottom: 6px;">
+                                <div class="flex items-center justify-between pt-6 w-full">
+                                    <div>
+                                        <span class="project-location text-sm">📍 {{ $project->location }}</span>
+                                        <span class="text-sm font-bold text-slate-400">{{ $project->year }}</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 @empty
-                <p class="reveal col-span-3 text-center" style="color: rgba(255,255,255,0.4);">Belum ada proyek yang
-                    ditampilkan.</p>
+                    <p class="reveal col-span-3 text-center" style="color: rgba(255,255,255,0.4);">Belum ada proyek yang
+                        ditampilkan.</p>
                 @endforelse
             </div>
         </div>
-    </section> --}}
+    </section>
 
     <!-- ======================== 6. PROCESS SECTION ======================== -->
     <section id="process" class="relative z-10 py-32 bg-slate-950">

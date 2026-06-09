@@ -36,8 +36,9 @@
         </ul>
     @else
         <ul class="nav-links">
-            {{-- <li><a href="{{ Request::is('/') ? '#projects' : route('home') . '#projects' }}">{{ $ft->navbar['menu_1']
-                    ?? 'Portofolio' }}</a></li> --}}
+            <li><a
+                    href="{{ Request::is('/') ? '#projects' : route('home') . '#projects' }}">{{ $ft->navbar['menu_1'] ?? 'Portofolio' }}</a>
+            </li>
             <li><a
                     href="{{ Request::is('/') ? '#products' : route('home') . '#products' }}">{{ $ft->navbar['menu_2'] ?? 'Layanan' }}</a>
             </li>
@@ -68,7 +69,7 @@
     @if(request()->routeIs('client.*'))
         <a href="{{ route('home') }}" class="mobile-link">← Beranda Website</a>
     @else
-        {{-- <a href="{{ route('home') }}#projects" class="mobile-link">{{ $ft->navbar['menu_1'] ?? 'Portofolio' }}</a> --}}
+        <a href="{{ route('home') }}#projects" class="mobile-link">{{ $ft->navbar['menu_1'] ?? 'Portofolio' }}</a>
         <a href="{{ route('home') }}#products" class="mobile-link">{{ $ft->navbar['menu_2'] ?? 'Layanan' }}</a>
         <a href="{{ route('home') }}#testimonials" class="mobile-link">{{ $ft->navbar['menu_3'] ?? 'Testimoni' }}</a>
         @auth
