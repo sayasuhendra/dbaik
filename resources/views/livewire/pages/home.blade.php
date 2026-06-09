@@ -193,138 +193,138 @@ new class extends Component {
             <div class="products-grid">
                 <!-- 1. AI Solutions -->
                 @if($categories->contains('slug', 'ai-solutions'))
-                <div class="product-card reveal"
-                    x-on:click="window.location='{{ route('product.gallery', 'ai-solutions') }}'">
-                    <div>
-                        <div class="product-icon text-cyan-400">🤖</div>
-                        <h3 class="product-name">AI Solutions</h3>
-                        <p class="product-desc">Integrasi kecerdasan buatan ke sistem bisnis Anda, analisis data tingkat
-                            lanjut, pengenalan gambar, serta kecerdasan adaptif.</p>
+                    <div class="product-card reveal"
+                        x-on:click="window.location='{{ route('product.gallery', 'ai-solutions') }}'">
+                        <div>
+                            <div class="product-icon text-cyan-400">🤖</div>
+                            <h3 class="product-name">AI Solutions</h3>
+                            <p class="product-desc">Integrasi kecerdasan buatan ke sistem bisnis Anda, analisis data tingkat
+                                lanjut, pengenalan gambar, serta kecerdasan adaptif.</p>
+                        </div>
+                        <div class="flex flex-col gap-4 mt-6">
+                            <div class="product-tag">TensorFlow • OpenAI • PyTorch</div>
+                            <div class="product-arrow">→</div>
+                        </div>
                     </div>
-                    <div class="flex flex-col gap-4 mt-6">
-                        <div class="product-tag">TensorFlow • OpenAI • PyTorch</div>
-                        <div class="product-arrow">→</div>
-                    </div>
-                </div>
                 @endif
 
                 <!-- 2. Website Development -->
                 @if($categories->contains('slug', 'website-development'))
-                <div class="product-card reveal"
-                    x-on:click="window.location='{{ route('product.gallery', 'website-development') }}'">
-                    <div>
-                        <div class="product-icon text-blue-400">💻</div>
-                        <h3 class="product-name">Website Development</h3>
-                        <p class="product-desc">Platform web modern yang responsif, berkecepatan tinggi, SEO-friendly,
-                            dengan desain UX eksklusif standar Awwwards.</p>
+                    <div class="product-card reveal"
+                        x-on:click="window.location='{{ route('product.gallery', 'website-development') }}'">
+                        <div>
+                            <div class="product-icon text-blue-400">💻</div>
+                            <h3 class="product-name">Website Development</h3>
+                            <p class="product-desc">Platform web modern yang responsif, berkecepatan tinggi, SEO-friendly,
+                                dengan desain UX eksklusif standar Awwwards.</p>
+                        </div>
+                        <div class="flex flex-col gap-4 mt-6">
+                            <div class="product-tag">Next.js • Laravel • Tailwind</div>
+                            <div class="product-arrow">→</div>
+                        </div>
                     </div>
-                    <div class="flex flex-col gap-4 mt-6">
-                        <div class="product-tag">Next.js • Laravel • Tailwind</div>
-                        <div class="product-arrow">→</div>
-                    </div>
-                </div>
                 @endif
 
                 <!-- 3. Software Development -->
                 @if($categories->contains('slug', 'software-development'))
-                <div class="product-card reveal"
-                    x-on:click="window.location='{{ route('product.gallery', 'software-development') }}'">
-                    <div>
-                        <div class="product-icon text-purple-400">🚀</div>
-                        <h3 class="product-name">Software Development</h3>
-                        <p class="product-desc">Sistem SaaS kustom, portal ERP/CRM perusahaan, core platform berskala
-                            enterprise dengan keandalan tinggi.</p>
+                    <div class="product-card reveal"
+                        x-on:click="window.location='{{ route('product.gallery', 'software-development') }}'">
+                        <div>
+                            <div class="product-icon text-purple-400">🚀</div>
+                            <h3 class="product-name">Software Development</h3>
+                            <p class="product-desc">Sistem SaaS kustom, portal ERP/CRM perusahaan, core platform berskala
+                                enterprise dengan keandalan tinggi.</p>
+                        </div>
+                        <div class="flex flex-col gap-4 mt-6">
+                            <div class="product-tag">Node.js • Python • PostgreSQL</div>
+                            <div class="product-arrow">→</div>
+                        </div>
                     </div>
-                    <div class="flex flex-col gap-4 mt-6">
-                        <div class="product-tag">Node.js • Python • PostgreSQL</div>
-                        <div class="product-arrow">→</div>
-                    </div>
-                </div>
                 @endif
 
                 <!-- 4. Mobile App Development -->
                 @if($categories->contains('slug', 'mobile-app-development'))
-                <div class="product-card reveal"
-                    x-on:click="window.location='{{ route('product.gallery', 'mobile-app-development') }}'">
-                    <div>
-                        <div class="product-icon text-indigo-400">📱</div>
-                        <h3 class="product-name">Mobile App Development</h3>
-                        <p class="product-desc">Aplikasi mobile native dan cross-platform dengan interaksi antarmuka
-                            yang sangat mulus dan ramah pengguna.</p>
+                    <div class="product-card reveal"
+                        x-on:click="window.location='{{ route('product.gallery', 'mobile-app-development') }}'">
+                        <div>
+                            <div class="product-icon text-indigo-400">📱</div>
+                            <h3 class="product-name">Mobile App Development</h3>
+                            <p class="product-desc">Aplikasi mobile native dan cross-platform dengan interaksi antarmuka
+                                yang sangat mulus dan ramah pengguna.</p>
+                        </div>
+                        <div class="flex flex-col gap-4 mt-6">
+                            <div class="product-tag">Flutter • React Native • Swift</div>
+                            <div class="product-arrow">→</div>
+                        </div>
                     </div>
-                    <div class="flex flex-col gap-4 mt-6">
-                        <div class="product-tag">Flutter • React Native • Swift</div>
-                        <div class="product-arrow">→</div>
-                    </div>
-                </div>
                 @endif
 
                 <!-- 5. AI Automation -->
                 @if($categories->contains('slug', 'ai-automation'))
-                <div class="product-card reveal"
-                    x-on:click="window.location='{{ route('product.gallery', 'ai-automation') }}'">
-                    <div>
-                        <div class="product-icon text-emerald-400">🧠</div>
-                        <h3 class="product-name">AI Automation</h3>
-                        <p class="product-desc">Penerapan AI Agents otonom untuk merevolusi efisiensi divisi internal
-                            Anda tanpa keterlibatan manual konstan.</p>
+                    <div class="product-card reveal"
+                        x-on:click="window.location='{{ route('product.gallery', 'ai-automation') }}'">
+                        <div>
+                            <div class="product-icon text-emerald-400">🧠</div>
+                            <h3 class="product-name">AI Automation</h3>
+                            <p class="product-desc">Penerapan AI Agents otonom untuk merevolusi efisiensi divisi internal
+                                Anda tanpa keterlibatan manual konstan.</p>
+                        </div>
+                        <div class="flex flex-col gap-4 mt-6">
+                            <div class="product-tag">LangChain • n8n • AutoGPT</div>
+                            <div class="product-arrow">→</div>
+                        </div>
                     </div>
-                    <div class="flex flex-col gap-4 mt-6">
-                        <div class="product-tag">LangChain • n8n • AutoGPT</div>
-                        <div class="product-arrow">→</div>
-                    </div>
-                </div>
                 @endif
 
                 <!-- 6. Business Automation -->
                 @if($categories->contains('slug', 'business-automation'))
-                <div class="product-card reveal"
-                    x-on:click="window.location='{{ route('product.gallery', 'business-automation') }}'">
-                    <div>
-                        <div class="product-icon text-amber-400">⚡</div>
-                        <h3 class="product-name">Business Automation</h3>
-                        <p class="product-desc">Automasi alur data, integrasi API sistem lama dengan platform cloud
-                            modern untuk mempercepat proses birokrasi bisnis.</p>
+                    <div class="product-card reveal"
+                        x-on:click="window.location='{{ route('product.gallery', 'business-automation') }}'">
+                        <div>
+                            <div class="product-icon text-amber-400">⚡</div>
+                            <h3 class="product-name">Business Automation</h3>
+                            <p class="product-desc">Automasi alur data, integrasi API sistem lama dengan platform cloud
+                                modern untuk mempercepat proses birokrasi bisnis.</p>
+                        </div>
+                        <div class="flex flex-col gap-4 mt-6">
+                            <div class="product-tag">Make • Zapier • Custom APIs</div>
+                            <div class="product-arrow">→</div>
+                        </div>
                     </div>
-                    <div class="flex flex-col gap-4 mt-6">
-                        <div class="product-tag">Make • Zapier • Custom APIs</div>
-                        <div class="product-arrow">→</div>
-                    </div>
-                </div>
                 @endif
 
                 <!-- 7. Game Development -->
                 @if($categories->contains('slug', 'game-development'))
-                <div class="product-card reveal"
-                    x-on:click="window.location='{{ route('product.gallery', 'game-development') }}'">
-                    <div>
-                        <div class="product-icon text-rose-400">🎮</div>
-                        <h3 class="product-name">Game Development</h3>
-                        <p class="product-desc">Menciptakan game 2D & 3D interaktif untuk tujuan edukasi, brand
-                            activations, gamifikasi, serta pasar global.</p>
+                    <div class="product-card reveal"
+                        x-on:click="window.location='{{ route('product.gallery', 'game-development') }}'">
+                        <div>
+                            <div class="product-icon text-rose-400">🎮</div>
+                            <h3 class="product-name">Game Development</h3>
+                            <p class="product-desc">Menciptakan game 2D & 3D interaktif untuk tujuan edukasi, brand
+                                activations, gamifikasi, serta pasar global.</p>
+                        </div>
+                        <div class="flex flex-col gap-4 mt-6">
+                            <div class="product-tag">Unity • Unreal Engine • WebGL</div>
+                            <div class="product-arrow">→</div>
+                        </div>
                     </div>
-                    <div class="flex flex-col gap-4 mt-6">
-                        <div class="product-tag">Unity • Unreal Engine • WebGL</div>
-                        <div class="product-arrow">→</div>
-                    </div>
-                </div>
                 @endif
 
                 <!-- 8. Technology Consulting -->
                 @if($categories->contains('slug', 'technology-consulting'))
-                <div class="product-card reveal"
-                    x-on:click="window.location='{{ route('product.gallery', 'technology-consulting') }}'">
-                    <div>
-                        <div class="product-icon text-sky-400">🔮</div>
-                        <h3 class="product-name">Technology Consulting</h3>
-                        <p class="product-desc">Riset arsitektur sistem, audit keamanan siber, strategi transformasi
-                            digital untuk korporasi dan institusi pendidikan.</p>
+                    <div class="product-card reveal"
+                        x-on:click="window.location='{{ route('product.gallery', 'technology-consulting') }}'">
+                        <div>
+                            <div class="product-icon text-sky-400">🔮</div>
+                            <h3 class="product-name">Technology Consulting</h3>
+                            <p class="product-desc">Riset arsitektur sistem, audit keamanan siber, strategi transformasi
+                                digital untuk korporasi dan institusi pendidikan.</p>
+                        </div>
+                        <div class="flex flex-col gap-4 mt-6">
+                            <div class="product-tag">Enterprise System • Cybersecurity</div>
+                            <div class="product-arrow">→</div>
+                        </div>
                     </div>
-                    <div class="flex flex-col gap-4 mt-6">
-                        <div class="product-tag">Enterprise System • Cybersecurity</div>
-                        <div class="product-arrow">→</div>
-                    </div>
-                </div>
                 @endif
             </div>
         </div>
@@ -568,13 +568,14 @@ new class extends Component {
     </section> --}}
 
     <!-- ======================== 5. PORTFOLIO SECTION ======================== -->
-    <section id="projects" class="relative z-10 py-32 bg-slate-900/10">
+    {{-- <section id="projects" class="relative z-10 py-32 bg-slate-900/10">
         <div class="container mx-auto max-w-7xl px-6">
             <div class="reveal">
                 <p class="section-label">{{ $frontendText->portfolio['label'] ?? 'Karya Unggulan' }}</p>
                 <h2 class="section-title">{{ $frontendText->portfolio['title'] ?? 'Digital Product Showcase' }}</h2>
                 <p class="section-sub">
-                    {{ $frontendText->portfolio['subtitle'] ?? 'Jelajahi portofolio proyek enterprise dan startup modern yang kami rancang dengan teknologi terdepan.' }}
+                    {{ $frontendText->portfolio['subtitle'] ?? 'Jelajahi portofolio proyek enterprise dan startup modern
+                    yang kami rancang dengan teknologi terdepan.' }}
                 </p>
             </div>
 
@@ -599,45 +600,48 @@ new class extends Component {
 
             <div class="projects-grid">
                 @forelse($projects as $project)
-                    <div class="project-card reveal"
-                        x-show="activeCategory === 'all' || activeCategory === '{{ $project->category }}'"
-                        x-transition:enter="transition ease-out duration-300"
-                        x-transition:enter-start="opacity-0 translateY(20px)"
-                        x-on:click="window.location='{{ route('portfolio.detail', $project->id) }}'"
-                        style="display: flex; flex-direction: column;">
-                        <div class="project-img-wrapper">
-                            @php
-                                $pPhoto = (is_array($project->photos) && isset($project->photos[0])) ? $project->photos[0] : null;
-                                $pPhotoUrl = $pPhoto ? (str_starts_with($pPhoto, 'http') || str_starts_with($pPhoto, 'img/') ? $pPhoto : asset('storage/' . $pPhoto)) : 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80';
-                            @endphp
-                            <img src="{{ $pPhotoUrl }}" alt="{{ $project->title }}" loading="lazy">
-                            <div
-                                class="absolute top-4 left-4 bg-slate-950/80 border border-white/15 px-4 py-2 rounded-full text-[10px] font-bold tracking-widest text-cyan-400 uppercase">
-                                {{ $project->type }}
-                            </div>
+                <div class="project-card reveal"
+                    x-show="activeCategory === 'all' || activeCategory === '{{ $project->category }}'"
+                    x-transition:enter="transition ease-out duration-300"
+                    x-transition:enter-start="opacity-0 translateY(20px)"
+                    x-on:click="window.location='{{ route('portfolio.detail', $project->id) }}'"
+                    style="display: flex; flex-direction: column;">
+                    <div class="project-img-wrapper">
+                        @php
+                        $pPhoto = (is_array($project->photos) && isset($project->photos[0])) ? $project->photos[0] :
+                        null;
+                        $pPhotoUrl = $pPhoto ? (str_starts_with($pPhoto, 'http') || str_starts_with($pPhoto, 'img/') ?
+                        $pPhoto : asset('storage/' . $pPhoto)) :
+                        'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80';
+                        @endphp
+                        <img src="{{ $pPhotoUrl }}" alt="{{ $project->title }}" loading="lazy">
+                        <div
+                            class="absolute top-4 left-4 bg-slate-950/80 border border-white/15 px-4 py-2 rounded-full text-[10px] font-bold tracking-widest text-cyan-400 uppercase">
+                            {{ $project->type }}
                         </div>
-                        <div class="project-info flex-grow flex flex-col justify-between">
-                            <div>
-                                <p class="project-category">{{ $project->category }}</p>
-                                <h3 class="project-title">{{ $project->title }}</h3>
-                            </div>
-                            <div class="border-t border-white/10 w-full" style="margin-bottom: 6px;">
-                                <div class="flex items-center justify-between pt-6 w-full">
-                                    <div>
-                                        <span class="project-location text-sm">📍 {{ $project->location }}</span>
-                                        <span class="text-sm font-bold text-slate-400">{{ $project->year }}</span>
-                                    </div>
+                    </div>
+                    <div class="project-info flex-grow flex flex-col justify-between">
+                        <div>
+                            <p class="project-category">{{ $project->category }}</p>
+                            <h3 class="project-title">{{ $project->title }}</h3>
+                        </div>
+                        <div class="border-t border-white/10 w-full" style="margin-bottom: 6px;">
+                            <div class="flex items-center justify-between pt-6 w-full">
+                                <div>
+                                    <span class="project-location text-sm">📍 {{ $project->location }}</span>
+                                    <span class="text-sm font-bold text-slate-400">{{ $project->year }}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
                 @empty
-                    <p class="reveal col-span-3 text-center" style="color: rgba(255,255,255,0.4);">Belum ada proyek yang
-                        ditampilkan.</p>
+                <p class="reveal col-span-3 text-center" style="color: rgba(255,255,255,0.4);">Belum ada proyek yang
+                    ditampilkan.</p>
                 @endforelse
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <!-- ======================== 6. PROCESS SECTION ======================== -->
     <section id="process" class="relative z-10 py-32 bg-slate-950">
