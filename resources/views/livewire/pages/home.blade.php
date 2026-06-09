@@ -583,10 +583,10 @@ new class extends Component {
                 <button class="px-8 py-3 rounded-full text-sm font-bold transition-all border"
                     :class="activeCategory === 'all' ? 'bg-cyan-500 text-slate-950 border-cyan-400 font-extrabold shadow-[0_0_15px_rgba(6,182,212,0.3)]' : 'bg-transparent text-slate-300 border-white/10 hover:border-white/20'"
                     x-on:click="activeCategory = 'all'">Semua Proyek</button>
-                {{-- <button class="px-8 py-3 rounded-full text-sm font-bold transition-all border"
-                    :class="activeCategory === 'AI Systems' ? 'bg-cyan-500 text-slate-950 border-cyan-400 font-extrabold shadow-[0_0_15px_rgba(6,182,212,0.3)]' : 'bg-transparent text-slate-300 border-white/10 hover:border-white/20'"
-                    x-on:click="activeCategory = 'AI Systems'">AI Systems</button>
                 <button class="px-8 py-3 rounded-full text-sm font-bold transition-all border"
+                    :class="activeCategory === 'Website Development' ? 'bg-cyan-500 text-slate-950 border-cyan-400 font-extrabold shadow-[0_0_15px_rgba(6,182,212,0.3)]' : 'bg-transparent text-slate-300 border-white/10 hover:border-white/20'"
+                    x-on:click="activeCategory = 'Website Development'">Website Development</button>
+                {{-- <button class="px-8 py-3 rounded-full text-sm font-bold transition-all border"
                     :class="activeCategory === 'SaaS Platforms' ? 'bg-cyan-500 text-slate-950 border-cyan-400 font-extrabold shadow-[0_0_15px_rgba(6,182,212,0.3)]' : 'bg-transparent text-slate-300 border-white/10 hover:border-white/20'"
                     x-on:click="activeCategory = 'SaaS Platforms'">SaaS Platforms</button> --}}
                 <button class="px-8 py-3 rounded-full text-sm font-bold transition-all border"
